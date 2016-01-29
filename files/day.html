@@ -1,0 +1,40 @@
+
+<div class="day_header" ng-init="count=0">
+	<h1>
+		<span class='previous' ng-click='pre_day()'>&#9668</span>
+		{{months[sel_date.month]}}-{{sel_date.day}}-{{sel_date.year}}
+		<span class='next' ng-click='next_day()'>&#9658</span>
+	</h1>
+</div> <!-- .day_header -->
+
+<div class="btn_container">
+	<button class="btn" ng-click='show_modal = true'>Add New Event</button>
+	<a href="#/home"><button class="btn">Back to Home Page</button></a>
+</div><!-- .btn_container -->
+
+<div id="modal" ng-show='show_modal'>
+	
+	<form class="modal_content">
+		<div  class="close" ng-click='show_modal=false'>X</div>
+		<label>Event Time: </label>
+		<select ng-model="event.hour" required>
+			<option ng-repeat="hour in hours" value="{{hour}}" ng-selected="hour == event.hour">{{hour}}</option>
+		</select>
+		<textarea ng-model='event.content' placeholder="Event Content" required></textarea>
+		<input type="submit" value="Submit" class='btn' ng-click='send_event(event)'>
+	</form> <!-- .modal_content -->
+</div><!-- #modal -->
+
+
+<div class="event_output" 
+     ng-repeat='item in cal 
+                 | filter:{year:sel_date.year, month:sel_date.month, day:sel_date.day} : true
+                 | orderBy: "hour" ' >
+
+	
+	 	{{item.hour}} | {{item.content}}
+	 	 <span class="delete" ng-click='cal.$remove(item)'>X</span> 
+
+</div> <!--.event_output -->
+
+

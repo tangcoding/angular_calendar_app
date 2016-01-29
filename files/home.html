@@ -1,0 +1,24 @@
+
+	<nav class="nav">
+
+		<span class='previous' ng-click='pre_month()'>&#9668</span>
+
+		<select ng-model="date.month">
+		 <option ng-repeat="month in months" value="{{ $index }}" ng-selected="$index == date.month">{{month}}</option>
+		</select>
+
+		<select ng-model="date.year">
+		<option ng-repeat="year in years" value="{{ year }}" ng-selected="year == date.year">{{year}}</option>
+		</select>
+
+		<span class='next' ng-click='next_month()'>&#9658</span>
+
+
+	</nav><!-- .nav -->
+
+
+    <my_calendar></my_calendar> 
+
+    <p><em>* Click date for details and adding new event</em></p>
+
+

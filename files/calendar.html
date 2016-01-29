@@ -1,0 +1,23 @@
+<div class="calendar_wrap">
+	  <div class="calendar_cell" 
+		   ng-repeat='cal_date in date_range.days' 
+		   ng-click='select_day(cal_date)'
+		   ng-class='{outer: !isCurrentMonth(cal_date.month)}'>
+
+
+				  {{months[cal_date.month] | limitTo: 3}} 
+				  {{cal_date.day}}
+				  <ul>
+				  	 <li class="list"
+				  	     ng-repeat="item in cal 
+				  	       | filter:{year:cal_date.year, month:cal_date.month, day:cal_date.day} :true
+				  	       | orderBy: 'hour'" >
+
+				  	     {{item.content}}
+				  	 </li> 
+				  </ul>
+
+	 </div><!-- .calendar_cell - -->
+
+	
+</div> <!-- .cal_wrap -->
